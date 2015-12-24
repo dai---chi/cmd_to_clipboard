@@ -1,0 +1,12 @@
+{
+  "name": "cmd-to-clipboard",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "clipboard": "~1.5.5"
+  },
+  "devDependencies": {
+    "chai": "~3.4.2",
+    "mocha": "~2.3.4"
+  }
+}
