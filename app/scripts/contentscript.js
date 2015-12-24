@@ -21,10 +21,10 @@ $('pre').each(function(i, $cmd_with_prompt){
       var cmd = cmd_with_prompt.replace(regex, '')
       // alert(cmd)
       // $cmd_with_prompt.appendChild(cmd)
-        $('<button>', {
-          'data-clipboard-text': cmd,
-          'class': 'cmd_to_clipboard_btn',
-        }).text('copy').appendTo($cmd_with_prompt)
+      $('<button>', {
+        'data-clipboard-text': cmd,
+        'class': 'cmd_to_clipboard_btn',
+      }).text('copy').appendTo($cmd_with_prompt)
     }
   })
 })
