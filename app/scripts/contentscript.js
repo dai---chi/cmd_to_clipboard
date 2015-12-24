@@ -2,24 +2,33 @@
 
 var regex = /^(\$|\#)/
 
-$('pre').each(function(i, $cmd_with_prompt){
-  console.log($cmd_with_prompt)
+$('pre').each(function(i, a_pre_dom){
+  // console.log(a_pre_dom)
 
   // 複数行ある場合の対応
-  var cmds_with_prompt = $cmd_with_prompt.textContent.split('\n') 
+  var cmds_with_prompts = a_pre_dom.textContent.split('\n') 
 
   // 空文字削除
-  var cmds_with_prompts = $.grep(cmds_with_prompt, function(e){return e;})
+  cmds_with_prompts = $.grep(cmds_with_prompts, function(e){return e;})
 
+  var cmd_with_prompt_with_button = ['<pre>']
   $.each(cmds_with_prompts, function(i, cmd_with_prompt){
+
     if ( cmd_with_prompt.match(regex) ) {
+      var prompt = cmd_with_prompt.charAt(0)
       var cmd = cmd_with_prompt.replace(regex, '')
-      $('<button>', {
+                               .replace(/^\s/, '')
+      var button_dom = $('<button>', {
         'data-clipboard-text': cmd,
         'class': 'cmd_to_clipboard_btn',
-      }).text('copy').appendTo($cmd_with_prompt)
+      }).text('copy')
+      cmd_with_prompt_with_button.push(prompt + ' ' + cmd)
+      cmd_with_prompt_with_button.push(' ' + button_dom[0].outerHTML + "\n")
+      console.log(cmd_with_prompt_with_button.join(''))
     }
   })
+  cmd_with_prompt_with_button.push('</pre>')
+  $(this).replaceWith(cmd_with_prompt_with_button.join(''))
 })
 
 
