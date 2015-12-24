@@ -13,7 +13,7 @@ $('pre').each(function(i, $cmd_with_prompt){
   var cmds_with_prompt = $cmd_with_prompt.textContent.split('\n')
 
   // 空文字削除
-  cmds_with_prompts = $.grep(cmds_with_prompt, function(e){return e;})
+  var cmds_with_prompts = $.grep(cmds_with_prompt, function(e){return e;})
   $.each(cmds_with_prompts, function(i, cmd_with_prompt){
     if ( cmd_with_prompt.match(regex) ) {
       var cmd = cmd_with_prompt.replace(regex, '')
@@ -26,3 +26,12 @@ $('pre').each(function(i, $cmd_with_prompt){
     }
   })
 })
+
+
+var clipboard = new Clipboard('.cmd_to_clipboard_btn');
+clipboard.on('success', function(e) {
+//成功時の処理
+});
+clipboard.on('error', function(e) {
+//失敗時の処理
+});
