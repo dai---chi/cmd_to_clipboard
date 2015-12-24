@@ -1,10 +1,5 @@
 'use strict';
 
-// console.log('\'Allo \'Allo! Content script');
-//# sourceMappingURL=contentscript.js.map
-
-// var a = "# curl -O https://raw.githubusercontent.com/blacklabelops/jenkins/master/docker-compose.yml"
-
 var regex = /^(\$|\#)/
 
 $('pre').each(function(i, $cmd_with_prompt){
@@ -19,8 +14,6 @@ $('pre').each(function(i, $cmd_with_prompt){
   $.each(cmds_with_prompts, function(i, cmd_with_prompt){
     if ( cmd_with_prompt.match(regex) ) {
       var cmd = cmd_with_prompt.replace(regex, '')
-      // alert(cmd)
-      // $cmd_with_prompt.appendChild(cmd)
       $('<button>', {
         'data-clipboard-text': cmd,
         'class': 'cmd_to_clipboard_btn',
